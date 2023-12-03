@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import Task from './Task';
 
-const Tasks = ({ tasks }) => {
-    console.log("Tasks1;");
-  
-    
-    
+const Tasks = ({ tasks, onDelete }) => {
+    console.log("Tasksjs;");
     return (
         <>
           { tasks.map((task) => (
-            <h3 key={task.id}> { task.text } </h3>
+            <Task key={task.id} task={task} onDelete={onDelete} />
           )) }
         </>
     );
