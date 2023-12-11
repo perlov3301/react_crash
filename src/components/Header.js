@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-const Header = ({ title }) => {
-    const onClick = () => {
-        console.log("Header.js; onClick");
-    };
+const Header = ({ title, onAdd, showAdd }) => {
+    // const onClick = () => {
+    //     console.log("Header.js; 'Add'=onClick");
+    //     showAdd();
+    // };
     return (
         <header className='header'>
             <h1
             //   style={headingStyle}
             >  {title} </h1>
-            <Button color='green' text='Add'
-               onClick={onClick}
-            />  
+            { showAdd ?
+               ( <Button 
+                   color='red' 
+                   text='Close'
+                   onClick={onAdd}
+            /> ) 
+               : 
+               ( <Button 
+                  color='green' 
+                  text='Open'
+                  onClick={onAdd}
+            /> ) }
+            
         </header>
     );
 };

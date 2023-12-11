@@ -24,7 +24,7 @@ const Task = ({ task, onDelete, onToggle }) => {
                 onClick={()=>onDelete(task.created)}
             /> 
             </h3>
-            <p> {task.day} </p>
+            <p>{task.day ? task.day : "no Day&Time was defined"} </p>
         </div>
     ) ;
 } ;

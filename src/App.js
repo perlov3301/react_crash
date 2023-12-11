@@ -26,9 +26,21 @@ let alist = [
   },
 ];
 function App() {
+    const [showAddTask, setShowAddTask] = useState(false);
     const [tasks, setTasks] = useState(alist);
     let alength = tasks.length;
 
+    const onAdd = () => {
+      const a = !showAddTask;
+      setShowAddTask(a);
+      if(a) {
+        const color = 'red';
+        const btnText = 'closeAdd'
+    } else {
+      const color = 'green';
+      const btnText = 'openAdd'
+    }
+    };
     const addTask = (task) => {
       // console.log("Appjs; addTask; created: "+ (task.created) );
       const id = Math.floor(Math.random()*10000)+1;
@@ -61,10 +73,15 @@ function App() {
     };
   return (
     <div className="container">
-      <Header  />
-      <AddTask   onAdd={addTask} />
+      <Header 
+        onAdd={() => setShowAddTask(!showAddTask)} 
+        showAdd={showAddTask}
+        
+      />
+      {showAddTask && <AddTask   onAdd={addTask} />}
+      
       {
-        alength===0 ? "No Tasks To Show" : 
+        alength===0 ? (<p style={{textAlign: 'center'}}>No Tasks To Show</p>) : 
         <Tasks tasks={tasks} 
           onDelete={deleteTask}
           onToggle={toggleReminder}
