@@ -6,22 +6,22 @@ const Task = ({ task, onDelete, onToggle }) => {
         // <div className={`task ${task.reminder ? 'task-reminder': ''}`}
         //       onDoubleClick ={() => onToggle(task.created)} >
            <div className={`task ${cssTask}`} 
-              onDoubleClick={() => onToggle(task.created)}
+              onDoubleClick={() => onToggle(task.id)}
            >
             <h5>
               {/* <b style={{fontSize:'1rem'}}>created:</b>
               {task.created}  */}
                <b style={{fontSize:'1rem'}}>   id:</b>
               {task.id}
-              <b style={{fontSize:'1rem'}}>   reminder:</b>
-              {task.reminder?"true":"false"} 
+              {/* <b style={{fontSize:'1rem'}}>   reminder:</b>
+              {task.reminder?"true":"false"}  */}
               <b style={{fontSize:'1rem'}}>   created:</b>
               {task.created}
             </h5>
             <h3>{task.text} 
               <FaTimes 
                 style={{ color:'red', cursor:'pointer' }} 
-                onClick={()=>onDelete(task.created)}
+                onClick={()=>onDelete(task.id)}
             /> 
             </h3>
             <p>{task.day ? task.day : "no Day&Time was defined"} </p>

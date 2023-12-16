@@ -3,41 +3,23 @@ import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
-let alist = [
-//   {
-//       id: 1,
-//       text: "Doctors Appointment1",
-//       day: 'Feb 4th at 2:30pm',
-//       reminder: true,
-//       created: 1900301123  },
-//   {
-//       id:2,
-//       text: 'Meeting at School',
-//       day: 'Feb 6th at 1:30pm',
-//       reminder: true,
-//       created: 1901301123,
-//   },
-//   {
-//       id: 3,
-//       text: 'Food Shopping',
-//       day: 'Feb 5th at 2:30pm',
-//       reminder: true,
-//       created: 1902301123,
-//   },
-];
+let alist = [];
 function App() {
     const [showAddTask, setShowAddTask] = useState(false);
     const [tasks, setTasks] = useState(alist);
 // useEffect is used for side effects
     useEffect(()=> {
-     
-      fetchTasks();
+      const getTasks = async () => {
+        const tasksFromServer = await fetchTasks();
+        setTasks(tasksFromServer);
+      };
+     getTasks();
     }, []);
-    const fetchTasks = async () => {
-      // from json-server
+    //Fetch Tasks
+    const fetchTasks = async () => { // from json-server
             const res = await fetch("http://localhost:5000/tasks");
             const data = await res.json();
-            console.log("Appjs;useEffect;fetchTasks;data="+data);
+            console.log("Appjs;useEffect;fetchTasks outside;data="+data.length);
             return data;
           };
     let alength = tasks.length;
@@ -53,31 +35,33 @@ function App() {
       const btnText = 'openAdd'
     }
     };
-    const addTask = (task) => {
-      // console.log("Appjs; addTask; created: "+ (task.created) );
-      const id = Math.floor(Math.random()*10000)+1;
-      const newTask =  
-        { id, ...task 
-          // id:id, 
-          // text:task.text, 
-          // day:task.day, 
-          // reminder: task.reminder,
-          // created: task.created
+    const addTask = async (task) => {
+      console.log("Appjs; addTask; created: "+ (task.created) );
+      const res = await fetch(
+        "http://localhost:5000/tasks", {
+          method: "POST",
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify(task)
         }
-        ;
-      setTasks([...tasks, newTask]);
+      );
+      const data = await res.json();
+      setTasks([...tasks, data]);
     };
 
-    const deleteTask = (created) => {
-      //  console.log('Appjs;delete ',created);
-      setTasks(tasks.filter(task => task.created !== created));
+    const deleteTask = async (id) => {
+        //const id = created;
+         console.log('Appjs;deleteTask; id= ',id);
+      await fetch(`http://localhost:5000/tasks/${id}`, {
+        method: 'DELETE',
+      });
+      setTasks(tasks.filter(task => task.id !== id));
       alength = tasks.length;
     };
     // Toggle Reminder
-    const toggleReminder = (created) => {
+    const toggleReminder = (id) => {
       setTasks(
         tasks.map((task) => 
-          task.created === created ? { 
+          task.id === id ? { 
           ...task, reminder: !task.reminder
          } : task 
          )

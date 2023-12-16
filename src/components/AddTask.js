@@ -5,16 +5,10 @@ const AddTask = ({ onAdd } ) => {
     const [text, setText] = useState("");
     const [day, setDay] = useState("");
     const [reminder, setReminder] =useState(false);
-    const agettime = new Date().getTime();
     const [created, setCreated] = useState(new Date().getTime());
-    // let aID=1;
-    // const maxID = () => {
-    //   tasks.map((task)=> task.id>aID ? aID=task.id: '');
-    // };
+   
      const onSubmit = (e) => {
        e.preventDefault();
-       setCreated(agettime);
-       console.log("AddTaskjs;  onSubmit agettime  "+(agettime));
        console.log("AddTaskjs;  onSubmit created:  "+ created);
        if(!text) { 
           alert("Please add a Task");
@@ -39,8 +33,8 @@ const AddTask = ({ onAdd } ) => {
             <p>
                {/* text: {text}; 
                day&time: {day};  */}
-               reminder: {reminder?'true':'false'}; 
-               latest getTime: {new Date().getTime()}
+               {/* reminder: {reminder?'true':'false'};  */}
+               latest 'created': {created}
             </p>
             <div className='form-control'>
                 <label>Task                </label>

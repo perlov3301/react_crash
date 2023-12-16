@@ -4,7 +4,7 @@ const Tasks = ({ tasks, onDelete, onToggle }) => {
     console.log("Tasksjs;");
     return (
         <>
-          { tasks.map((task) => (
+          { tasks.map((task,index) => (
             <Task key={task.created} 
               task={task} 
               onDelete={onDelete} 
