@@ -24,16 +24,9 @@
     {
       "text": "task 7",
       "day": "day 7",
-      "reminder": true,
+      "reminder": false,
       "created": 1702756104109,
       "id": 5
-    },
-    {
-      "text": "task 8",
-      "day": "day 8",
-      "reminder": true,
-      "created": 1702756116777,
-      "id": 6
     },
     {
       "text": "task 9",
@@ -41,27 +34,6 @@
       "reminder": true,
       "created": 1702756148245,
       "id": 7
-    },
-    {
-      "text": "task 10",
-      "day": "day 10",
-      "reminder": true,
-      "created": 1702756360995,
-      "id": 8
-    },
-    {
-      "text": "task 11",
-      "day": "day 11",
-      "reminder": true,
-      "created": 1702756376622,
-      "id": 9
-    },
-    {
-      "text": "task 12",
-      "day": "day 12",
-      "reminder": true,
-      "created": 1702756455580,
-      "id": 10
     }
   ]
 }
