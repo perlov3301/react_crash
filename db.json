@@ -10,16 +10,9 @@
     {
       "text": "task 4",
       "day": "day 4",
-      "reminder": true,
+      "reminder": false,
       "created": 1702755610122,
       "id": 3
-    },
-    {
-      "text": "task 5",
-      "day": "day 5",
-      "reminder": true,
-      "created": 1702755666905,
-      "id": 4
     },
     {
       "text": "task 7",

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+// import { BrowserRouter as Router, Route  } from 'react-router-dom';
+import { BrowserRouter, Route  } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import About from './components/About';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
@@ -12,7 +16,7 @@ function App() {
       const getTasks = async () => {
         const tasksFromServer = await fetchTasks();
         setTasks(tasksFromServer);
-      };
+      };                                         
      getTasks();
     }, []);
     //Fetch Tasks
@@ -85,22 +89,27 @@ function App() {
       ;
     };
   return (
-    <div className="container">
-      <Header 
-        onAdd={() => setShowAddTask(!showAddTask)} 
-        showAdd={showAddTask}
+      <div className="container">
+        <Header 
+          onAdd={() => setShowAddTask(!showAddTask)} 
+          showAdd={showAddTask}
+          
+        />
+        {showAddTask && <AddTask   onAdd={addTask} />}
         
-      />
-      {showAddTask && <AddTask   onAdd={addTask} />}
-      
-      {
-        alength===0 ? (<p style={{textAlign: 'center'}}>No Tasks To Show</p>) : 
-        <Tasks tasks={tasks} 
-          onDelete={deleteTask}
-          onToggle={toggleReminder}
-       />
-      }
-    </div>
+        {
+          alength===0 ? (<p style={{textAlign: 'center'}}>No Tasks To Show</p>) : 
+          <Tasks tasks={tasks} 
+            onDelete={deleteTask}
+            onToggle={toggleReminder}
+        />
+        }
+        <p style={{textAlign:'center'}}>
+          <a href={`/about`} >href_/about within p</a>
+        </p>
+        <Footer />
+      </div>
+   
   );
 }
 
